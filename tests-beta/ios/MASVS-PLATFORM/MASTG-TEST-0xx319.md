@@ -8,7 +8,7 @@ weakness: MASWE-0071
 
 ## Overview
 
-The target URL of a [`WkWebView`](https://developer.apple.com/documentation/webkit/wkwebview "Apple Developer") can be set dynamically, for example via the [load](https://developer.apple.com/documentation/webkit/wkwebview/1414954-load "Apple Developer") method. This will load the corresponding content into the view.
+The target URL of a [`WkWebView`](https://developer.apple.com/documentation/webkit/wkwebview "Apple Developer") can be set dynamically, for example via the [`load`](https://developer.apple.com/documentation/webkit/wkwebview/1414954-load "Apple Developer") method. This will load the corresponding content into the view.
 
 The `WkWebView` can be tricked into showing malicious content if this URL can be controlled by an attacker. The input must be properly sanitized to avoid this issue.
 
@@ -19,7 +19,7 @@ The `WkWebView` can be tricked into showing malicious content if this URL can be
 
 ## Observation
 
-The output could contain [load operations](https://developer.apple.com/documentation/webkit/wkwebview "Apple Developer") where the URL in the [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest?language=objc "Apple Developer") is not hard-coded.
+The output could contain [load operations](https://developer.apple.com/documentation/webkit/wkwebview "Apple Developer") where the URL in the [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest?language=objc "Apple Developer") is not hardcoded.
 
 ## Evaluation
 
