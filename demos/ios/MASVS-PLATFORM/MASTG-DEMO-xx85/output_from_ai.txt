@@ -1,0 +1,32 @@
+func showHtmlRegistrationView(
+    firstname: String,
+    completion: @escaping (String) -> Void
+) {
+    let webView = WKWebView()
+
+    let fileURL = MastgTest.fileURL
+
+    let docDir = FileManager.default
+        .urls(for: .documentDirectory, in: .userDomainMask)
+        .first!
+
+    webView.loadFileURL(fileURL, allowingReadAccessTo: docDir)
+
+    let vc = UIViewController()
+    vc.view = webView
+
+    guard let presenter = MastgTest.topViewController() else {
+        completion("Failed to present: no view controller.")
+        return
+    }
+
+    presenter.present(vc, animated: true) {
+        // Captures:
+        // - firstname
+        // - webView
+        // - vc
+        // - completion
+        //
+        // Actual block body is not included in this snippet.
+    }
+}
