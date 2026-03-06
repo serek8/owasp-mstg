@@ -1,0 +1,55 @@
+{
+  "CFBundleName": "MASTestApp",
+  "DTSDKName": "iphoneos26.0",
+  "DTXcode": "2600",
+  "DTSDKBuild": "23A339",
+  "CFBundleDevelopmentRegion": "en",
+  "CFBundleVersion": "1",
+  "BuildMachineOSBuild": "25A362",
+  "DTPlatformName": "iphoneos",
+  "CFBundlePackageType": "APPL",
+  "CFBundleShortVersionString": "1.0",
+  "CFBundleSupportedPlatforms": [
+    "iPhoneOS"
+  ],
+  "NSFaceIDUsageDescription": "Authentication with TouchId or FaceID",
+  "UIApplicationSupportsIndirectInputEvents": true,
+  "UILaunchScreen": {
+    "UILaunchScreen": {}
+  },
+  "NSAppTransportSecurity": {
+    "NSAllowsArbitraryLoads": false,
+    "NSAllowsArbitraryLoadsInWebContent": true
+  },
+  "CFBundleInfoDictionaryVersion": "6.0",
+  "CFBundleExecutable": "MASTestApp",
+  "DTCompiler": "com.apple.compilers.llvm.clang.1_0",
+  "UIRequiredDeviceCapabilities": [
+    "arm64"
+  ],
+  "MinimumOSVersion": "15.6",
+  "CFBundleIdentifier": "com.guardsquare.ixguard.jan",
+  "UIDeviceFamily": [
+    1,
+    2
+  ],
+  "DTPlatformVersion": "26.0",
+  "DTXcodeBuild": "17A324",
+  "LSRequiresIPhoneOS": true,
+  "UIApplicationSceneManifest": {
+    "UIApplicationSupportsMultipleScenes": true,
+    "UISceneConfigurations": {}
+  },
+  "UISupportedInterfaceOrientations~ipad": [
+    "UIInterfaceOrientationPortrait",
+    "UIInterfaceOrientationPortraitUpsideDown",
+    "UIInterfaceOrientationLandscapeLeft",
+    "UIInterfaceOrientationLandscapeRight"
+  ],
+  "UISupportedInterfaceOrientations~iphone": [
+    "UIInterfaceOrientationPortrait",
+    "UIInterfaceOrientationLandscapeLeft",
+    "UIInterfaceOrientationLandscapeRight"
+  ],
+  "DTPlatformBuild": "23A339"
+}

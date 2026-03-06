@@ -4,6 +4,7 @@ title: URI Manipulation in WebView
 id: MASTG-TEST-0xx319
 type: [static, dynamic]
 weakness: MASWE-0071
+best-practices: [MASTG-BEST-xx32]
 ---
 
 ## Overview
@@ -16,6 +17,7 @@ The `WkWebView` can be tricked into showing malicious content if this URL can be
 
 1. Extract the app as described in @MASTG-TECH-0058.
 2. Review the code or reverse engineer the binary according to @MASTG-TECH-0076 and identify data flows from attacker-controlled input to the load method of `WkWebView`.
+3. Run a static analysis tool such as @MASTG-TOOL-0073 to search for load...
 
 ## Observation
 
@@ -24,5 +26,3 @@ The output could contain [load operations](https://developer.apple.com/documenta
 ## Evaluation
 
 The test case fails if an attacker-controlled input is passed into a load operation without being sanitized.
-
-The URL should not depend on dynamic input. If this is not avoidable, the input must be sanitized. For example, the app must ensure that only URLs with a set of well-known domains are loaded.

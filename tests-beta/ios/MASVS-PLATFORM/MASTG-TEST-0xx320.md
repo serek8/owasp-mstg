@@ -4,6 +4,8 @@ title: Mixed HTTP and HTTPS content in WebView
 id: MASTG-TEST-0xx320
 type: [static]
 weakness: MASWE-0071
+knowledge: [MASTG-KNOW-0071]
+best-practices: [MASTG-BEST-xx34]
 ---
 
 ## Overview

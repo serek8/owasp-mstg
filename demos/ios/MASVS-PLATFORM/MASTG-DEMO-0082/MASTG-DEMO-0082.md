@@ -4,15 +4,16 @@ title: URI Manipulation in WebView
 code: [swift]
 id: MASTG-DEMO-0082
 test: MASTG-TEST-0xx319
+kind: fail
 ---
 
-### Sample
+## Sample
 
 The following sample demonstrates the use of [`load(_ request: URLRequest)`](https://developer.apple.com/documentation/webkit/wkwebview/load(_:)) to open a website in a WebView.
 
 {{ MastgTest.swift }}
 
-### Steps
+## Steps
 
 1. Unzip the app package and locate the main binary file (@MASTG-TECH-0058), which in this case is `./Payload/MASTestApp.app/MASTestApp`.
 2. Open the app binary with @MASTG-TOOL-0073 with the `-i` option to run this script.
@@ -21,7 +22,7 @@ The following sample demonstrates the use of [`load(_ request: URLRequest)`](htt
 
 {{ run.sh }}
 
-### Observation
+## Observation
 
 The output contains the disassembled code of the function using `load(_ request: URLRequest)`. This function is large and complex, so to simplify the analysis, we can use an LLM to assist with reverse engineering the application.
 
@@ -32,6 +33,6 @@ The output contains the disassembled code of the function using `load(_ request:
 3. On **line 16**, the application creates a `URL` object directly from this concatenated string without validating the resulting host, path, or structure.
 4. On **line 23**, the constructed request is passed to `WKWebView.loadRequest`, allowing a user who can alter `NSUserDefaults["username"]` to influence the URL that is ultimately loaded.
 
-### Evaluation
+## Evaluation
 
 The test fails because the user can manipulate website URL.
