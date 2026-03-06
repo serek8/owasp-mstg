@@ -1,6 +1,6 @@
 ---
 platform: ios
-title: Deprecated Usage of UIWebView
+title: Use of Deprecated UIWebView
 code: [swift]
 id: MASTG-DEMO-xx83
 test: MASTG-TEST-0xx318
