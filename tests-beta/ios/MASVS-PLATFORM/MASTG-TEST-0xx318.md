@@ -23,6 +23,4 @@ The output should contain a list of locations where `UIWebViews` are used.
 
 ## Evaluation
 
-The test case fails if there are any references to `UIWebView`.
-
-For iOS apps on iOS 8.0 and above, using [`WKWebView`](../../../Document/0x06h-Testing-Platform-Interaction.md/#wkwebview) is essential. `WKWebView` provides enhanced security and control over web view behavior, including the ability to disable JavaScript by setting `javaScriptEnabled` to `false`, reducing the risk of script-based attacks. Additionally, `WKWebView` can verify if all website resources used HTTPS to `hasOnlySecureContent`, which ensures that only secure (HTTPS) resources are loaded, further strengthening the app's protection against insecure content and mixed content vulnerabilities.
+The test case fails because the app uses `UIWebView`.
