@@ -11,6 +11,8 @@ kind: fail
 
 The following sample demonstrates a scenario similar to CVE-2025-12699, where an attacker manipulates a URI loaded by a WebView to access a file stored in the application's local storage containing sensitive user data. In this scenario, the application fails to properly validate user-controlled input and passes it directly to the WebView. As a result, the WebView loads the attacker-supplied URI without restrictions, potentially allowing unauthorized access to local files.
 
+To exploit the demo app and retrieve the secret file located at `<container>/Documents/secret.txt`, you can use a simple iframe-based payload `<iframe src='./secret.txt'></iframe>`.
+
 {{ MastgTest.swift }}
 
 ## Steps
