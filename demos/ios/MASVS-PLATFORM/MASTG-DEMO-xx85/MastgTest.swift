@@ -42,11 +42,6 @@ struct MastgTest {
                 webView.evaluateJavaScript(jsCode) { (_, error) in
                     if let error = error { print("Injection error: \(error.localizedDescription)") }
                 }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    vc.dismiss(animated: true)
-                    completion("Finished showing the WebView.")
-                }
             }
         }
     }

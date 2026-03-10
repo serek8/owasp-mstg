@@ -25,12 +25,7 @@ struct MastgTest {
         viewControllerToPresent.view = webView
         // Present from the topmost view controller
         if let presenter = topViewController() {
-          presenter.present(viewControllerToPresent, animated: true, completion: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-              presenter.dismiss(animated: true)
-              completion("Finished showing the WebView.")
-            }
-          })
+          presenter.present(viewControllerToPresent, animated: true, completion: {})
         } else {
           completion("Failed to present web view (no active view controller).")
         }
