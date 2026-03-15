@@ -1,3 +1,0 @@
-json.NSAppTransportSecurity.NSAllowsArbitraryLoadsInWebContent = true;
-Uses of hasOnlySecureContent:
-No uses of unrestricted 'hasOnlySecureContent' found
