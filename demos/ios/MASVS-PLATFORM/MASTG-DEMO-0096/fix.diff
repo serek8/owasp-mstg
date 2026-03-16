@@ -1,0 +1,39 @@
+--- MastgTest.swift	2026-03-13 20:23:05
++++ MastgTest-fixed.swift	2026-03-15 10:58:11
+@@ -5,7 +5,9 @@
+ struct MastgTest {
+ 
+     private static let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+-    private static let fileURL = docDir.appendingPathComponent("index.html")
++    // PASS: [MASTG-TEST-0xx319] webDir is a dedicated subdirectory; allowingReadAccessTo is scoped to it, keeping secret.txt out of reach.
++    private static let webDir = docDir.appendingPathComponent("webContent", isDirectory: true)
++    private static let fileURL = webDir.appendingPathComponent("index.html")
+     private static let secretURL = docDir.appendingPathComponent("secret.txt")
+ 
+     public static func mastgTest(completion: @escaping (String) -> Void) {
+@@ -36,12 +38,14 @@
+             }
+ 
+             presenter.present(vc, animated: true) {
+-                webView.loadFileURL(fileURL, allowingReadAccessTo: docDir)
++                // PASS: [MASTG-TEST-0xx319] allowingReadAccessTo is scoped to webDir, not the broader docDir.
++                webView.loadFileURL(fileURL, allowingReadAccessTo: webDir)
+             }
+         }
+     }
+ 
+     static func createHtmlFile() {
++        try? FileManager.default.createDirectory(at: webDir, withIntermediateDirectories: true)
+         let htmlContent = """
+         <!DOCTYPE html>
+         <html>
+@@ -98,7 +102,8 @@
+             .replacingOccurrences(of: "\"", with: "\\\"")
+             .replacingOccurrences(of: "\n", with: "\\n")
+ 
+-        let jsCode = "document.getElementById('firstname').innerHTML = \"\(escaped)\""
++        // PASS: [MASTG-TEST-0xx319] textContent treats the value as plain text, preventing HTML injection.
++        let jsCode = "document.getElementById('firstname').textContent = \"\(escaped)\""
+         webView.evaluateJavaScript(jsCode) { _, error in
+             if let error = error {
+                 print("Injection error: \(error.localizedDescription)")

@@ -15,15 +15,12 @@ struct MastgTest {
         DispatchQueue.main.async {
             showUserInput { userInput in
                 completion(#"Filling user input into the webview... "\#(userInput)""#)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                   showHtmlRegistrationView(firstname: userInput, completion: completion)
-                }
             }
         }
     }
     
     private static func showHtmlRegistrationView(firstname: String, completion: @escaping (String) -> Void) {
-        // Reduced delay for a snappier feel
         DispatchQueue.main.async {
             let webView = WKWebView()
             webView.loadFileURL(fileURL, allowingReadAccessTo: docDir)
@@ -37,11 +34,13 @@ struct MastgTest {
             }
             
             presenter.present(vc, animated: true) {
+              DispatchQueue.main.async {
                 // autocomplete the first name on the website
                 let jsCode = "document.getElementById('firstname').innerHTML = \"\(firstname)\""
                 webView.evaluateJavaScript(jsCode) { (_, error) in
-                    if let error = error { print("Injection error: \(error.localizedDescription)") }
+                  if let error = error { print("Injection error: \(error.localizedDescription)") }
                 }
+              }
             }
         }
     }

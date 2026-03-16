@@ -1,16 +1,3 @@
-Uses of loadRequest:
-No uses of unrestricted 'loadRequest' found
-
-Uses of 'loadFileURL':
-
-54  0x0000ca1f 0x10000ca1f 36  37   6.__TEXT.__objc_methname ascii loadFileURL:allowingReadAccessToURL:
-xrefs to 'loadFileURL' method name
-
-print function that contains 'loadFileURL' function
-sym.MASTestApp.MastgTest.docDir._6E8AB2C58CE173A727EF27CB85DF8CD8_...Z_ 0x10000407c [DATA:r--] ldr x1, reloc.fixup.defaultManager
-sym.MASTestApp.MastgTest.showHtmlRegistrationView._6E8AB2C58CE173A727EF27CB85DF8CD8.firstname.completion 0x10000502c [DATA:r--] ldr x1, reloc.fixup.defaultManager
-
-print function that contains 'loadFileURL' function
             ; CODE XREF from func.100006a84 @ 0x100006a8c(x) ; sym.MASTestApp.MastgTest.showHtmlRegistrationView._6E8AB2C58CE173A727EF27CB85DF8CD8.firstname.completion_...A_
 ┌ 796: E8AB2C.CE173A727EF27CB85DF8CD8.firstname.completion (int64_t arg1, int64_t arg2, int64_t arg3, int64_t arg4, int64_t arg_10h, int64_t arg_20h, int64_t arg_30h, int64_t arg_40h, int64_t arg_50h);
 ; MASTestApp.MastgTest.showHtmlRegistrationView._6E8AB2C58CE173A727EF2
