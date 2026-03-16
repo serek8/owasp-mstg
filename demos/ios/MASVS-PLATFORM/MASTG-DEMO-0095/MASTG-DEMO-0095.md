@@ -2,8 +2,8 @@
 platform: ios
 title: URI Manipulation in WebView
 code: [swift]
-id: MASTG-DEMO-0082
-test: MASTG-TEST-0xx319
+id: MASTG-DEMO-0095
+test: MASTG-TEST-0332
 kind: fail
 ---
 
@@ -26,7 +26,7 @@ The following sample demonstrates the use of [`load(_ request: URLRequest)`](htt
 
 The output contains the disassembled code of the function using `load(_ request: URLRequest)`. This function is large and complex, so to simplify the analysis, we can use an LLM to assist with reverse engineering the application.
 
-{{ output.txt # output_decompiled.c }}
+{{ output.txt # function.asm # ai-decompiled.swift }}
 
 1. On **lines 6–8**, the function retrieves the value of `"username"` from `NSUserDefaults`, which is a user-modifiable storage location and therefore an untrusted input source.
 2. On **lines 12–14**, this user-controlled value is appended to the hardcoded base string `"https://owasp.org/"`, meaning the final URL string is dynamically constructed rather than fixed.
