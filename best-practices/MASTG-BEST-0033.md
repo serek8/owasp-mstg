@@ -1,9 +1,9 @@
 ---
-title: Restrict WebKit Filesystem Access
-alias: restrict-webkit-filesystem-access
-id: MASTG-BEST-xx32
+title: Securely Load File Content in a WebView
+alias: securely-load-file-content-in-webview-ios
+id: MASTG-BEST-0033
 platform: ios
-knowledge: []
+knowledge: [MASTG-KNOW-0076]
 ---
 
 If your app relies on a static web component that loads HTML/JavaScript resources from app storage, ensure that a malicious payload cannot access other files within that storage. The app should sandbox the WebKit content using [`loadFileURL(_ URL: URL, allowingReadAccessTo readAccessURL: URL)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:)) so that the website can access only files within a specific directory.
