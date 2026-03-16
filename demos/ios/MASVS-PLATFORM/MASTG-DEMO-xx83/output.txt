@@ -1,3 +1,0 @@
-List all strings in the binary to verify if UIWebView class is used:
-2472 0x0002e558 0x10002e558 23  24                             ascii _OBJC_CLASS_$_UIWebView
-2667 0x000357f4 0x1000357f4 23  24                             ascii _OBJC_CLASS_$_UIWebView

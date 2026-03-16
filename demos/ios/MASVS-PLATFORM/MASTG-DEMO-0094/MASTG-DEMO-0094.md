@@ -1,9 +1,9 @@
 ---
 platform: ios
-title: Use of Deprecated UIWebView
+title: Use of the Deprecated UIWebView
 code: [swift]
-id: MASTG-DEMO-xx83
-test: MASTG-TEST-0xx318
+id: MASTG-DEMO-0094
+test: MASTG-TEST-0331
 kind: fail
 ---
 
@@ -18,14 +18,14 @@ The following sample demonstrates the use of [`UIWebView`](https://developer.app
 1. Unzip the app package and locate the main binary file (@MASTG-TECH-0058), which in this case is `./Payload/MASTestApp.app/MASTestApp`.
 2. Open the app binary with @MASTG-TOOL-0073 with the `-i` option to run the script.
 
-{{ run.sh }}
+{{ uiwebview.r2 # run.sh }}
 
 ## Observation
 
-The output contains the `OBJC_CLASS_$_UIWebView`, which indicates the presence of [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) in the app.
+The output contains a reference to [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) used from the `sym.MASTestApp.MastgTest.mastg.completion__1` function.
 
 {{ output.txt }}
 
 ## Evaluation
 
-The test fails because the app contains deprecated `UIWebView`.
+The test fails because the app uses the deprecated `UIWebView` class.
