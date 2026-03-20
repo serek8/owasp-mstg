@@ -17,7 +17,7 @@ The app loads a local HTML file from the app's `Documents` directory and sets `a
 
 To exploit the demo app and retrieve the secret file located at `<container>/Documents/secret.txt`, provide the following payload as input:
 
-`<iframe src="./secret.txt"></iframe>`
+`%3Ciframe%20src=%22./secret.txt%22%3E%3C/iframe%3E`, which is equivalent to `<iframe src="./secret.txt"></iframe>`
 
 This demo shows the realistic situation where:
 

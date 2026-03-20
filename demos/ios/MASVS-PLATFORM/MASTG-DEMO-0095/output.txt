@@ -1,7 +1,6 @@
-Uses of loadRequest:
-0x10000b7a2 13 str.loadRequest:
-0x100014330 8 reloc.fixup.loadRequest:
+Uses of loadRequest or loadFileURL:
+0x10000c0ff 37 str.loadFileURL:allowingReadAccessToURL:
+0x100018118 8 reloc.fixup.loadFileURL:allowingReadAccessT
 
-xrefs to 'loadRequest'
-sym.func.10000450c 0x1000047d0 [DATA:r--] ldr x1, reloc.fixup.loadRequest:
-sym.func.1000053c0 0x100005a8c [DATA:r--] ldr x1, reloc.fixup.loadRequest:
+xrefs to 'loadFileURL' selector
+sym.MASTestApp.MastgTest.showHtmlRegistrationView._6E8AB2C58CE173A727EF27CB85DF8CD8.username.completion 0x100004f10 [DATA:r--] ldr x1, reloc.fixup.loadFileURL:allowingReadAccessT

@@ -9,9 +9,11 @@ kind: fail
 
 ## Sample
 
-The following sample demonstrates the use of [`load(_ request: URLRequest)`](https://developer.apple.com/documentation/webkit/wkwebview/load(_:)) to open a website in a WebView.
+This sample demonstrates a URI manipulation attack against the WebKit component. While we use [`loadFileURL(_ request: URLRequest)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfilerequest(_:allowingreadaccessto:)) here, this vulnerability applies to all `WebKit.load*()` methods.
 
 {{ MastgTest.swift }}
+
+To exploit the demo app via URI manipulation, set the username to the URL-encoded html code `%3Cmeta%20http-equiv=%22refresh%22%20content=%221;%20url=https://mas.owasp.org%22%3E`. This works because the app blindly renders the username GET argument, allowing an injected HTML `<meta>` tag to hijack the view and redirect it to a new destination.
 
 ## Steps
 
@@ -24,14 +26,14 @@ The following sample demonstrates the use of [`load(_ request: URLRequest)`](htt
 
 ## Observation
 
-The output contains the disassembled code of the function using `load(_ request: URLRequest)`. This function is large and complex, so to simplify the analysis, we can use an LLM to assist with reverse engineering the application.
+The output contains the disassembled code of the function using `loadFileURL(_ request: URLRequest)`. This function is large and complex, so to simplify the analysis, we can use an LLM to assist with reverse engineering the application.
 
 {{ output.txt # function.asm # ai-decompiled.swift }}
 
-1. On **lines 6–8**, the function retrieves the value of `"username"` from `NSUserDefaults`, which is a user-modifiable storage location and therefore an untrusted input source.
-2. On **lines 12–14**, this user-controlled value is appended to the hardcoded base string `"https://owasp.org/"`, meaning the final URL string is dynamically constructed rather than fixed.
-3. On **line 16**, the application creates a `URL` object directly from this concatenated string without validating the resulting host, path, or structure.
-4. On **line 23**, the constructed request is passed to `WKWebView.loadRequest`, allowing a user who can alter `NSUserDefaults["username"]` to influence the URL that is ultimately loaded.
+1. On **lines 6–8**, the function construct an URL from a user-modifiable `username` argument.
+2. On **lines 8**, this user-controlled value is appended to the hardcoded base string meaning the final URL string is dynamically constructed rather than fixed.
+3. On **line 11**, the application creates a `URL` object directly from this concatenated string without validating the resulting host, path, or structure.
+4. On **line 21**, the constructed request is passed to `WKWebView.loadFileURL`, allowing a user who can alter `username` to influence the URL that is ultimately loaded.
 
 ## Evaluation
 

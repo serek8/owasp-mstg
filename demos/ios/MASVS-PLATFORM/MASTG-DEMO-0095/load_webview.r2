@@ -2,12 +2,13 @@ e asm.bytes=false
 e scr.color=false
 e asm.var=false
 
-?e Uses of loadRequest:
-f~loadRequest
+?e Uses of loadRequest or loadFileURL:
+f~loadRequest,loadFileURL
 
 ?e
 
-?e xrefs to 'loadRequest'
-axt @ 0x100014330
+?e xrefs to 'loadFileURL' selector
 
-pdf @ 0x1000046d4 > function.asm
+axt @ 0x100018118
+
+pdf @ 0x100004f10 > function.asm
