@@ -9,7 +9,20 @@ best-practices: [MASTG-BEST-0034]
 
 ## Overview
 
-iOS apps can load URLs dynamically into a [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) using [`load(_:)`](https://developer.apple.com/documentation/webkit/wkwebview/1414954-load) with a `URLRequest` containing a remote URL.
+iOS applications can dynamically load content into a [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) using various `load(...)` methods. These methods can render both remote web content and locally stored files. Regardless of the source, the application must ensure that an attacker cannot control the URI or the content being loaded, as improper validation can lead to vulnerabilities such as unauthorized redirection, Cross-Site Scripting (XSS), or local file disclosure.
+
+The following WKWebView APIs are commonly targeted if they process untrusted input:
+
+**Remote URL Loading:**
+
+- [`load(_:)`](https://developer.apple.com/documentation/webkit/wkwebview/load(_:))
+- [`load(_:mimeType:characterEncodingName:baseURL:)`](https://developer.apple.com/documentation/webkit/wkwebview/load(_:mimetype:characterencodingname:baseurl:))
+
+**Local URL and Content Loading:**
+
+- [`loadFileRequest(_:allowingReadAccessTo:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfilerequest(_:allowingreadaccessto:))
+- [loadFileURL(_:allowingReadAccessTo:)](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:))
+- [`loadHTMLString(_:baseURL:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadhtmlstring(_:baseurl:))
 
 This test checks whether the app passes attacker-controlled input to `WKWebView.load(_:)` without adequate URL validation. If a URL originates from attacker-controlled input, for example through a deep link, custom URL scheme, or user-supplied data from the UI, and is passed directly to `load(_:)`, the `WKWebView` may be redirected to malicious content.
 
