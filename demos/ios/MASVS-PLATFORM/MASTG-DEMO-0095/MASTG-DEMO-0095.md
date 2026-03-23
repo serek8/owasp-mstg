@@ -9,11 +9,31 @@ kind: fail
 
 ## Sample
 
-This sample demonstrates a URI manipulation attack against the WebKit component. While we use [`loadFileURL(_:allowingReadAccessTo:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:)) here, this vulnerability applies to all `WebKit.load*()` methods.
+This sample demonstrates how attacker controlled input inside a WebView can alter the rendered page and trigger unintended navigation. The app loads a trusted local HTML file, but the page reads the `username` parameter from the URL and injects it into the DOM using `innerHTML`.
+
+Although the app uses `webView.loadFileURL(urlWithUsername, allowingReadAccessTo: docDir)`, broad file read access is not the focus of this demo. The issue demonstrated here is that attacker controlled input is rendered as HTML, which allows the attacker to inject content that changes page behavior and causes unintended navigation.
+
+When selecting payloads, note that `<script>` payloads usually do not execute in this case because scripts inserted through `innerHTML` are generally inert. However, other injected elements can still have side effects. For example, `<img onerror>` and `<svg onload>` can execute JavaScript through event handlers, and `<meta http-equiv="refresh">` may also trigger navigation by instructing the page to refresh to a different URL.
+
+Example payloads:
+
+- `<meta http-equiv="refresh" content="1; url=https://evil.com">`
+- `<img src=x onerror="window.location='https://evil.com'">`
+- `<svg onload="window.location='https://evil.com'"></svg>`
+
+Ensure the payload is URL-encoded. For example, the tag `<meta...>` must be formatted as `%3Cmeta%20http-equiv=%22refresh%22%20content=%221;%20url=https://evil.com%22%3E`.
+
+Summary of steps leading to this vulnerability.
+
+1. The app creates a trusted local HTML file and loads it into a `WKWebView`.
+2. The WebView URL includes attacker controlled input in the `username` query parameter.
+3. The page reads the `username` value from `window.location.search`.
+4. The value is inserted into the DOM using `innerHTML`.
+5. Because the input is treated as HTML instead of plain text, the attacker can inject markup.
+6. The injected markup introduces active behavior, such as an event handler or a refresh directive.
+7. As a result, the WebView navigates to an attacker chosen destination.
 
 {{ MastgTest.swift }}
-
-To exploit the demo app via URI manipulation, set the username to the URL-encoded html code `%3Cmeta%20http-equiv=%22refresh%22%20content=%221;%20url=https://mas.owasp.org%22%3E`. This works because the app blindly renders the username GET argument, allowing an injected HTML `<meta>` tag to hijack the view and redirect it to a new destination.
 
 ## Steps
 
