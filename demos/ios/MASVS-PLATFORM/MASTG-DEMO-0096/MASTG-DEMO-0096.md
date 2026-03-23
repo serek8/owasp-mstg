@@ -9,24 +9,30 @@ kind: fail
 
 ## Sample
 
-The following sample demonstrates a compound scenario, similar to [CVE-2025-12699](https://nvd.nist.gov/vuln/detail/CVE-2025-12699), in which HTML injection in a local `WKWebView` becomes more severe because the app grants overly broad local file read access through [`loadFileURL(_:allowingReadAccessTo:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:)).
+This sample demonstrates how overly broad file read access in a WebView can increase the impact of a separate HTML injection flaw. The app loads a trusted local HTML file, but grants the WebView read access to the entire `Documents` directory by calling [`loadFileURL(_:allowingReadAccessTo:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:)) with `docDir`.
 
-The app loads a local HTML file from the app's `Documents` directory and sets `allowingReadAccessTo` to the entire `Documents` directory. It also reflects attacker-controlled input into the page by assigning it to `innerHTML` through JavaScript. As a result, an attacker can inject HTML that causes the WebView to load other files from the same directory, including files containing sensitive user data.
+By itself, that broad read access is not enough to expose files. The issue becomes exploitable because the page also reads the `username` parameter from the URL and inserts it into the DOM using `innerHTML`. Since attacker controlled input is treated as HTML, an attacker can inject markup that loads other local files from the same directory.
 
-{{ ../MASTG-DEMO-0095/MastgTest.swift }}
+Because the WebView can read the full `Documents` directory, injected elements such as an `<iframe>` can load sibling files like `secret.txt`. This shows how overly broad local file access can turn a separate WebView injection bug into a local file disclosure issue.
 
-To exploit the demo app and retrieve the secret file located at `<container>/Documents/secret.txt`, provide the following payload as input:
+To exploit the demo and load the secret file stored at `<container>/Documents/secret.txt`, you can enter the following payload as input:
 
-`%3Ciframe%20src=%22./secret.txt%22%3E%3C/iframe%3E`, which is equivalent to `<iframe src="./secret.txt"></iframe>`
+- `<iframe src="./secret.txt"></iframe>`
+- `<object data="./secret.txt" type="text/plain"></object>`
+- `<embed src="./secret.txt" type="text/plain">`
 
-This demo shows the realistic situation where:
+Ensure the payload is URL-encoded. For example, the tag `<meta...>` must be formatted as `%3Ciframe%20src=%22./secret.txt%22%3E%3C/iframe%3E`.
 
-1. a WebView loads local content
-2. the app grants access to the entire `Documents` directory
-3. a separate injection bug allows attacker controlled markup
-4. the attacker reads sensitive local files
+Summary of steps leading to this vulnerability.
 
-Without step three, the WebView simply has unused permission to read more files than necessary. With step three, the permission becomes exploitable.
+1. The app loads a local HTML file into a `WKWebView`.
+2. The WebView is granted read access to the entire `Documents` directory.
+3. The page reads attacker controlled input from the `username` query parameter.
+4. That value is inserted into the DOM using `innerHTML`.
+5. The attacker injects markup that loads another local file, such as `secret.txt`.
+6. As a result, local content becomes readable inside the WebView.
+
+The vulnerable code path is the combination of untrusted input being inserted with `innerHTML` and broader local file read access than necessary. Together, they allow attacker controlled markup to access local files that should not be exposed.
 
 ## Steps
 
