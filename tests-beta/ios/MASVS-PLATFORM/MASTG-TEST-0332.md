@@ -21,7 +21,7 @@ The following WKWebView APIs are commonly targeted if they process untrusted inp
 **Local URL and Content Loading:**
 
 - [`loadFileRequest(_:allowingReadAccessTo:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfilerequest(_:allowingreadaccessto:))
-- [loadFileURL(_:allowingReadAccessTo:)](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:))
+- [`loadFileURL(_:allowingReadAccessTo:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:))
 - [`loadHTMLString(_:baseURL:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadhtmlstring(_:baseurl:))
 
 This test checks whether the app passes attacker-controlled input to `WKWebView.load(_:)` without adequate URL validation. If a URL originates from attacker-controlled input, for example through a deep link, custom URL scheme, or user-supplied data from the UI, and is passed directly to `load(_:)`, the `WKWebView` may be redirected to malicious content.
