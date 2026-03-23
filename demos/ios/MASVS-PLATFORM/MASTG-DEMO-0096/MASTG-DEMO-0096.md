@@ -21,8 +21,6 @@ To exploit the demo and load the secret file stored at `<container>/Documents/se
 - `<object data="./secret.txt" type="text/plain"></object>`
 - `<embed src="./secret.txt" type="text/plain">`
 
-Ensure the payload is URL-encoded. For example, the tag `<meta...>` must be formatted as `%3Ciframe%20src=%22./secret.txt%22%3E%3C/iframe%3E`.
-
 Summary of steps leading to this vulnerability.
 
 1. The app loads a local HTML file into a `WKWebView`.

