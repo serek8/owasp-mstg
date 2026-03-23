@@ -21,8 +21,8 @@ In this test, we look for references to `UIWebView` (@MASTG-KNOW-0076), a deprec
 
 ## Observation
 
-The output should contain a list of locations where `UIWebViews` are used.
+The output should contain a list of locations where `UIWebView`s are used.
 
 ## Evaluation
 
-The test case fails because the app uses `UIWebView`.
+The test case fails if any use of `UIWebView` is found in the app.

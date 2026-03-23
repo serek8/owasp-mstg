@@ -1,4 +1,4 @@
-List all uses of the UIWebView class is used:
+List all uses of the UIWebView class:
 0x100010108 8 reloc.UIWebView
 
 List all xrefs to the 'UIWebView' class:

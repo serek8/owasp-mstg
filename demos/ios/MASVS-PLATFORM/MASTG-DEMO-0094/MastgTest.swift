@@ -1,15 +1,8 @@
 import SwiftUI
 import UIKit
 import WebKit
-import os
 
 struct MastgTest {
-
-  private static let logger = Logger(
-    subsystem: Bundle.main.bundleIdentifier ?? "org.owasp.mas.MastgTest",
-    category: "MastgTest"
-  )
-  
   @inline(never) @_optimize(none)
   public static func mastgTest(completion: @escaping (String) -> Void) {
     DispatchQueue.main.async {

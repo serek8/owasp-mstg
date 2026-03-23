@@ -2,7 +2,7 @@ e asm.bytes=false
 e scr.color=false
 e asm.var=false
 
-?e List all uses of the UIWebView class is used:
+?e List all uses of the 'UIWebView' class:
 
 f~UIWebView
 

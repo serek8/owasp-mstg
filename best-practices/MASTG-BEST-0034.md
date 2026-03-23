@@ -8,7 +8,7 @@ knowledge: [MASTG-KNOW-0076]
 
 Always treat any data passed to a `WKWebView` as untrusted unless it is fully controlled by the app. This includes URLs loaded through `load(_:)`, local files loaded through `loadFileURL`, HTML passed to `loadHTMLString`, JavaScript passed to `evaluateJavaScript`, and any data inserted into the rendered page.
 
-If the app loads a URL into a `WKWebView`, the URL should be parsed and validated against a strict allowlist of expected schemes, hosts, paths, and other relevant components. Do not allow attacker controlled input, such as deep links, custom URL schemes, pasted text, or server supplied values, to determine arbitrary WebView destinations.
+If the app loads a URL into a `WKWebView`, the URL should be parsed and validated against a strict allowlist of expected schemes, hosts, paths, and other relevant components. Do not allow attacker-controlled input, such as deep links, custom URL schemes, pasted text, or server-supplied values, to determine arbitrary WebView destinations.
 
 For deep links and custom URL schemes, only accept known commands and fixed destinations. Do not forward arbitrary URL parameters directly into `WKWebView.load(_:)`.
 
