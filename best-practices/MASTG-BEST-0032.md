@@ -1,6 +1,6 @@
 ---
 title: Migrate from UIWebView to WKWebView
-alias: migrate-from-UIWebView-WKWebView
+alias: migrate-from-uiwebview-to-wkwebview
 id: MASTG-BEST-0032
 platform: ios
 knowledge: [MASTG-KNOW-0076]
