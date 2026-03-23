@@ -1,6 +1,6 @@
 ---
 platform: ios
-title: Attacker-Controlled Input in WebViews
+title: Attacker-Controlled URI in WebViews
 id: MASTG-TEST-0332
 type: [static]
 weakness: MASWE-0071
