@@ -70,4 +70,6 @@ To prevent this:
 
 To apply the fix from `fix.diff` to the original `MastgTest.swift` file, run the following command from this demo directory:
 
+```sh
+patch ../MASTG-DEMO-0095/MastgTest.swift -o MastgTest-fixed.swift < fix.diff
 ```
