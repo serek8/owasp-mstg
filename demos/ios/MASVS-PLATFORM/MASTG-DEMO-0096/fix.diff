@@ -7,7 +7,7 @@ index a2ff74e9..6151e620 100644
      
      private static let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 -    private static let fileURL = docDir.appendingPathComponent("index.html")
-+    // PASS: [MASTG-TEST-0xx319] webDir is a dedicated subdirectory; allowingReadAccessTo is scoped to it, keeping secret.txt out of reach.
++    // PASS: [MASTG-TEST-0333] webDir is a dedicated subdirectory; allowingReadAccessTo is scoped to it, keeping secret.txt out of reach.
 +    private static let webDir = docDir.appendingPathComponent("webContent", isDirectory: true)
 +    private static let fileURL = webDir.appendingPathComponent("index.html")
      private static let secretURL = docDir.appendingPathComponent("secret.txt")
@@ -18,7 +18,7 @@ index a2ff74e9..6151e620 100644
            }
            let webView = WKWebView()
 -          webView.loadFileURL(urlWithUsername, allowingReadAccessTo: docDir)
-+          // PASS: [MASTG-TEST-0xx319] allowingReadAccessTo is scoped to webDir, not the broader docDir.
++          // PASS: [MASTG-TEST-0333] allowingReadAccessTo is scoped to webDir, not the broader docDir.
 +          webView.loadFileURL(urlWithUsername, allowingReadAccessTo: webDir)
              
              let vc = UIViewController()

@@ -9,7 +9,7 @@ kind: fail
 
 ## Sample
 
-This sample demonstrates a URI manipulation attack against the WebKit component. While we use [`loadFileURL(_ request: URLRequest)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfilerequest(_:allowingreadaccessto:)) here, this vulnerability applies to all `WebKit.load*()` methods.
+This sample demonstrates a URI manipulation attack against the WebKit component. While we use [`loadFileURL(_:allowingReadAccessTo:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:)) here, this vulnerability applies to all `WebKit.load*()` methods.
 
 {{ MastgTest.swift }}
 
