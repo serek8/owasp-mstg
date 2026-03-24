@@ -5,6 +5,8 @@ id: MASTG-TEST-0332
 type: [static]
 weakness: MASWE-0071
 best-practices: [MASTG-BEST-0034]
+profiles: [L1, L2, P]
+knowledge: [MASTG-KNOW-0076]
 ---
 
 ## Overview
@@ -39,7 +41,7 @@ The output should contain a list of locations in the binary where `WKWebView` UR
 
 ## Evaluation
 
-The test fails if any call to `WKWebView` URL load APIs is found where the URL is derived from attacker-controlled input without proper validation.
+The test case fails if any call to `WKWebView` URL load APIs is found where the URL is derived from attacker-controlled input without proper validation.
 
 Inspect each reported code location using @MASTG-TECH-0076.
 

@@ -6,6 +6,7 @@ type: [static]
 available_since: 2.0
 deprecated_since: 12.0
 weakness: MASWE-0072
+profiles: [L1, L2]
 best-practices: [MASTG-BEST-0032]
 knowledge: [MASTG-KNOW-0076]
 ---

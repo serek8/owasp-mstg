@@ -10,7 +10,7 @@ f~UIWebView
 
 ?e List all xrefs to the 'UIWebView' class:
 
-axt 0x100010108
+axt @ 0x100010108
 
 ?e
 
