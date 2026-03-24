@@ -46,4 +46,3 @@ Inspect each reported code location using @MASTG-TECH-0076.
 - Trace where the URL originates.
 - Determine whether it is derived from attacker-controlled input, for example a custom URL scheme parameter, a deep link component, or unsanitized user input from the UI.
 - Verify that the URL is adequately validated before being passed to `WKWebView` URL load APIs.
-
