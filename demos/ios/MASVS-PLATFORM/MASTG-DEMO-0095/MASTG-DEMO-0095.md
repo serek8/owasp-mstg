@@ -44,7 +44,7 @@ Summary of steps leading to this vulnerability.
 
 ## Observation
 
-The output contains the disassembled code of the function using `loadFileURL(_ request: URLRequest)`. This function is large and complex, so to simplify the analysis, we can use an LLM to assist with reverse engineering the application.
+The output contains the disassembled code of the function using `loadFileURL(urlWithUsername, allowingReadAccessTo: docDir)`. This function is large and complex, so to simplify the analysis, we can use an LLM to assist with reverse engineering the application.
 
 !!! note "About `ai-decompiled.swift`"
     The `ai-decompiled.swift` file is an AI-assisted reconstruction derived from `function.asm` and is provided only as a convenience for understanding the logic. It may be inaccurate or incomplete; the assembly in `function.asm` and the original binary are the authoritative sources for analysis.
