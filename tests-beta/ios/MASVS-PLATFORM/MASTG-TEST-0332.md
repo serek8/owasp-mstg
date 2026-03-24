@@ -9,7 +9,7 @@ best-practices: [MASTG-BEST-0034]
 
 ## Overview
 
-iOS applications can dynamically load content into a [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) using various `load(...)` methods. These methods can render both remote web content and locally stored files. Regardless of the source, the application must ensure that an attacker cannot control the URI or the content being loaded, as improper validation can lead to vulnerabilities such as unauthorized redirection, Cross-Site Scripting (XSS), or local file disclosure.
+iOS apps can dynamically load content into a [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) using various URL load methods. These methods can render both remote web content and locally stored files.
 
 The following WKWebView APIs are commonly targeted if they process untrusted input:
 
@@ -24,7 +24,9 @@ The following WKWebView APIs are commonly targeted if they process untrusted inp
 - [`loadFileURL(_:allowingReadAccessTo:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadfileurl(_:allowingreadaccessto:))
 - [`loadHTMLString(_:baseURL:)`](https://developer.apple.com/documentation/webkit/wkwebview/loadhtmlstring(_:baseurl:))
 
-This test checks whether the app passes attacker-controlled input to `WKWebView.load(_:)` without adequate URL validation. If a URL originates from attacker-controlled input, for example through a deep link, custom URL scheme, or user-supplied data from the UI, and is passed directly to `load(_:)`, the `WKWebView` may be redirected to malicious content.
+Regardless of the source, passing a URL originating from attacker-controlled input (for example through a deep link, custom URL scheme, or user-supplied data from the UI) directly to the `WKWebView` URL load methods can lead to vulnerabilities such as unauthorized redirection, Cross-Site Scripting (XSS), or local file disclosure.
+
+This test checks whether the app passes attacker-controlled input to `WKWebView` URL load APIs without adequate URL validation.
 
 ## Steps
 
@@ -41,8 +43,7 @@ The test fails if any call to `WKWebView` URL load APIs is found where the URL i
 
 Inspect each reported code location using @MASTG-TECH-0076.
 
-- Trace where the [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest) URL originates.
+- Trace where the URL originates.
 - Determine whether it is derived from attacker-controlled input, for example a custom URL scheme parameter, a deep link component, or unsanitized user input from the UI.
 - Verify that the URL is adequately validated before being passed to `WKWebView` URL load APIs.
 
-The test passes if all URLs loaded into the `WKWebView` are either hardcoded or properly validated before being passed to any `WKWebView` URL load API.
